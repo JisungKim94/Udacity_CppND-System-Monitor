@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/kjs/My_Workspace/CppND-System-Monitor/src/format.cpp" "/home/kjs/My_Workspace/CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/format.cpp.o"
-  "/home/kjs/My_Workspace/CppND-System-Monitor/src/linux_parser.cpp" "/home/kjs/My_Workspace/CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/linux_parser.cpp.o"
-  "/home/kjs/My_Workspace/CppND-System-Monitor/src/main.cpp" "/home/kjs/My_Workspace/CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/main.cpp.o"
-  "/home/kjs/My_Workspace/CppND-System-Monitor/src/ncurses_display.cpp" "/home/kjs/My_Workspace/CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/ncurses_display.cpp.o"
-  "/home/kjs/My_Workspace/CppND-System-Monitor/src/process.cpp" "/home/kjs/My_Workspace/CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/process.cpp.o"
-  "/home/kjs/My_Workspace/CppND-System-Monitor/src/processor.cpp" "/home/kjs/My_Workspace/CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/processor.cpp.o"
-  "/home/kjs/My_Workspace/CppND-System-Monitor/src/system.cpp" "/home/kjs/My_Workspace/CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/system.cpp.o"
+  "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/src/format.cpp" "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/format.cpp.o"
+  "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/src/linux_parser.cpp" "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/linux_parser.cpp.o"
+  "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/src/main.cpp" "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/main.cpp.o"
+  "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/src/ncurses_display.cpp" "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/ncurses_display.cpp.o"
+  "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/src/process.cpp" "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/process.cpp.o"
+  "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/src/processor.cpp" "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/processor.cpp.o"
+  "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/src/system.cpp" "/home/kjs/My_Workspace/Udacity_CppND-System-Monitor/build/CMakeFiles/monitor.dir/src/system.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

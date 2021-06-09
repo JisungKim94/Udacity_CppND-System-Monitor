@@ -54,6 +54,30 @@
         "streambuf": "cpp",
         "thread": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
-    }
+        "typeinfo": "cpp",
+        "iostream": "cpp"
+    },
+
+    "editor.occurrencesHighlight": false,
+    "editor.selectionHighlight": false,
+    "terminal.integrated.fontFamily": "D2Coding",
+    "editor.fontSize": 16,
+    "editor.fontFamily": "D2Coding",
+    "terminal.integrated.fontSize": 16,
+    "C_Cpp.updateChannel": "Insiders",
+    "editor.minimap.enabled": false,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "editor.mouseWheelZoom": true,
+    "testMate.cpp.log.userId": "7fc826f50bd22ea09caa87fc78244070209f7d38",
+    "testMate.cpp.log.logSentry": "disable_3",
+    "cmake.configureOnOpen": true,
+    "editor.defaultFormatter": "xaver.clang-format",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+
 }
