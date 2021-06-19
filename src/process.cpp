@@ -16,7 +16,7 @@ using std::vector;
 int Process::getPid() { return pid_; }
 void Process::setPid(int pid) { pid_ = pid; }
 
-float Process::CpuUtilization() { return LinuxParser::CpuUtilization(pid_); }
+double Process::CpuUtilization() { return LinuxParser::CpuUtilization(pid_); }
 
 string Process::Command() { return LinuxParser::Command(pid_); }
 

@@ -84,13 +84,13 @@ vector<int> LinuxParser::Pids() {
 }
 
 // DONE: Read and return the system memory utilization
-float LinuxParser::MemoryUtilization() {
+double LinuxParser::MemoryUtilization() {
   string key;
   string line;
   string KB;
-  float value = 0.0;  // value type is float!
-  float available_value;
-  float total_value;
+  double value = 0.0;  // value type is double!
+  double available_value;
+  double total_value;
 
   std::ifstream filestream(kProcDirectory + kMeminfoFilename);
   if (filestream.is_open()) {
@@ -184,7 +184,7 @@ vector<string> LinuxParser::CpuUtilization() {
   return aggregate_cpu_;
 }
 
-float LinuxParser::CpuUtilization(int pid) {
+double LinuxParser::CpuUtilization(int pid) {
   string pass_;
   string utime_;
   string stime_;
@@ -192,10 +192,10 @@ float LinuxParser::CpuUtilization(int pid) {
   string cstime_;
   string starttime_;
 
-  float total_time_ = 0.0;
-  float seconds_ = 0.0;
-  float uptime_ = (float)UpTime();
-  float CpuUtilization = 0.0;
+  double total_time_ = 0.0;
+  double seconds_ = 0.0;
+  double uptime_ = (double)UpTime();
+  double CpuUtilization = 0.0;
 
   string line;
   std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);
@@ -333,7 +333,7 @@ long LinuxParser::UpTime(int pid) {
   string pass;
   string usrname;
   int cnt = 0;
-  float uptime = (float)UpTime();
+  double uptime = (double)UpTime();
   long uptimepid;
 
   std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);

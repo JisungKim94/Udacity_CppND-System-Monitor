@@ -19,7 +19,7 @@ const std::string kOSPath{"/etc/os-release"};
 const std::string kPasswordPath{"/etc/passwd"};
 
 // System
-float MemoryUtilization();
+double MemoryUtilization();
 long int UpTime();
 std::vector<int> Pids();
 int TotalProcesses();
@@ -45,7 +45,7 @@ long NonIdle_forCalcCpuUtilization();
 long Idle_forCalcCpuUtilization();
 
 // Processes
-float CpuUtilization(int pid);
+double CpuUtilization(int pid);
 std::string Command(int pid);
 std::string Ram(int pid);
 std::string Uid(int pid);
