@@ -105,12 +105,12 @@ float LinuxParser::MemoryUtilization() {
           total_value = value;
         } else if (key == "MemAvailable:") {
           available_value = value;
-          return available_value / total_value;
+          return (1.0 - (available_value / total_value));
         }
       }
     }
   }
-  return value;
+  return 0.0;
 }
 
 // DONE: Read and return the system uptime
@@ -288,9 +288,10 @@ string LinuxParser::Ram(int pid) {
     while (std::getline(filestream, line)) {
       std::istringstream linestream(line);
       linestream >> key >> value;
+      // using VmData not VmSize;
       if (key == "VmSize:") {
         if (value != "") {
-          longint_value = (long int)(stof(value) * 0.001);
+          longint_value = (long int)(stof(value) / 1024);
           value = to_string(longint_value);
           return value;
         }
@@ -346,16 +347,25 @@ long LinuxParser::UpTime(int pid) {
   string line;
   string x;
   string value;
+  string pass;
   string usrname;
+  int cnt = 0;
+  float uptime = (float)UpTime();
+  long uptimepid;
 
   std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);
   if (filestream.is_open()) {
     std::getline(filestream, line);
     std::istringstream linestream(line);
 
-    (linestream >> value >> value >> value >> value >> value >> value >>
-     value >> value >> value >> value >> value >> value >> value >> value >>
-     value >> value >> value >> value >> value >> value >> value >> value);
+    while (linestream >> pass) {
+      if (cnt == 21) {
+        value = pass;
+        break;
+      }
+      cnt = cnt + 1;
+    }
   }
-  return stol(value) / Hertz;
+  uptimepid = (uptime - stol(value) / Hertz);
+  return uptimepid;
 }
