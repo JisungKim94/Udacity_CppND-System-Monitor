@@ -132,24 +132,7 @@ long int LinuxParser::UpTime() {
   return value;
 }
 
-long LinuxParser::Jiffies() {
-  std::vector<std::string> aggregate_cpu_ = LinuxParser::CpuUtilization();
-  return stol(aggregate_cpu_[LinuxParser::kIdle_]) +
-         stol(aggregate_cpu_[LinuxParser::kIOwait_]) +
-         stol(aggregate_cpu_[LinuxParser::kUser_]) +
-         stol(aggregate_cpu_[LinuxParser::kNice_]) +
-         stol(aggregate_cpu_[LinuxParser::kSystem_]) +
-         stol(aggregate_cpu_[LinuxParser::kIRQ_]) +
-         stol(aggregate_cpu_[LinuxParser::kSoftIRQ_]) +
-         stol(aggregate_cpu_[LinuxParser::kSteal_]) +
-         stol(aggregate_cpu_[LinuxParser::kGuest_]) +
-         stol(aggregate_cpu_[LinuxParser::kGuestNice_]);
-}
-
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid [[maybe_unused]]) { return 0; }
-
-long LinuxParser::ActiveJiffies() {
+long LinuxParser::NonIdle_forCalcCpuUtilization() {
   std::vector<std::string> aggregate_cpu_ = LinuxParser::CpuUtilization();
   return stol(aggregate_cpu_[LinuxParser::kUser_]) +
          stol(aggregate_cpu_[LinuxParser::kNice_]) +
@@ -159,7 +142,7 @@ long LinuxParser::ActiveJiffies() {
          stol(aggregate_cpu_[LinuxParser::kSteal_]);
 }
 
-long LinuxParser::IdleJiffies() {
+long LinuxParser::Idle_forCalcCpuUtilization() {
   std::vector<std::string> aggregate_cpu_ = LinuxParser::CpuUtilization();
   return stol(aggregate_cpu_[LinuxParser::kIdle_]) +
          stol(aggregate_cpu_[LinuxParser::kIOwait_]);
@@ -289,7 +272,7 @@ string LinuxParser::Ram(int pid) {
       std::istringstream linestream(line);
       linestream >> key >> value;
       // using VmData not VmSize;
-      if (key == "VmSize:") {
+      if (key == "VmData:") {
         if (value != "") {
           longint_value = (long int)(stof(value) / 1024);
           value = to_string(longint_value);

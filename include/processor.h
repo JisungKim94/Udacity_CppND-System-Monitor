@@ -7,7 +7,7 @@ using std::string;
 
 class Processor {
  public:
-  float Utilization();
+  double Utilization();
 
  private:
 };
