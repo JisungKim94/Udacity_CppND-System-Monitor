@@ -72,8 +72,10 @@ vector<int> LinuxParser::Pids() {
       // Is every character of the name a digit?
       string filename(file->d_name);
       if (std::all_of(filename.begin(), filename.end(), isdigit)) {
-        int pid = stoi(filename);
-        pids.emplace_back(pid);
+        if (filename != "") {
+          int pid = stoi(filename);
+          pids.emplace_back(pid);
+        }
       }
     }
   }
@@ -222,9 +224,13 @@ float LinuxParser::CpuUtilization(int pid) {
         stime_ >> cutime_ >> cstime_ >> pass_ >> pass_ >> pass_ >> pass_ >>
         starttime_;
   }
-  total_time_ = stof(utime_) + stof(stime_) + stof(cutime_) + stof(cstime_);
-  seconds_ = uptime_ - (stof(starttime_) / Hertz);
-  CpuUtilization = 100 * ((total_time_ / Hertz) / seconds_);
+  if ((utime_ != "") && (stime_ != "") && (cutime_ != "") && (cstime_ != "") &&
+      (starttime_ != "")) {
+    total_time_ = stof(utime_) + stof(stime_) + stof(cutime_) + stof(cstime_);
+    seconds_ = uptime_ - (stof(starttime_) / Hertz);
+    CpuUtilization = 100 * ((total_time_ / Hertz) / seconds_);
+  }
+
   return CpuUtilization;
 }
 
@@ -283,9 +289,11 @@ string LinuxParser::Ram(int pid) {
       std::istringstream linestream(line);
       linestream >> key >> value;
       if (key == "VmSize:") {
-        longint_value = (long int)(stof(value) * 0.001);
-        value = to_string(longint_value);
-        return value;
+        if (value != "") {
+          longint_value = (long int)(stof(value) * 0.001);
+          value = to_string(longint_value);
+          return value;
+        }
       }
     }
   }
