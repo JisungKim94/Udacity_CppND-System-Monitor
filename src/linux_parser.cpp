@@ -134,18 +134,32 @@ long int LinuxParser::UpTime() {
 
 long LinuxParser::NonIdle_forCalcCpuUtilization() {
   std::vector<std::string> aggregate_cpu_ = LinuxParser::CpuUtilization();
-  return stol(aggregate_cpu_[LinuxParser::kUser_]) +
-         stol(aggregate_cpu_[LinuxParser::kNice_]) +
-         stol(aggregate_cpu_[LinuxParser::kSystem_]) +
-         stol(aggregate_cpu_[LinuxParser::kIRQ_]) +
-         stol(aggregate_cpu_[LinuxParser::kSoftIRQ_]) +
-         stol(aggregate_cpu_[LinuxParser::kSteal_]);
+  if ((aggregate_cpu_[LinuxParser::kUser_] != "") &&
+      (aggregate_cpu_[LinuxParser::kNice_] != "") &&
+      (aggregate_cpu_[LinuxParser::kSystem_] != "") &&
+      (aggregate_cpu_[LinuxParser::kIRQ_] != "") &&
+      (aggregate_cpu_[LinuxParser::kSteal_] != "") &&
+      (aggregate_cpu_[LinuxParser::kSoftIRQ_] != "")) {
+    return stol(aggregate_cpu_[LinuxParser::kUser_]) +
+           stol(aggregate_cpu_[LinuxParser::kNice_]) +
+           stol(aggregate_cpu_[LinuxParser::kSystem_]) +
+           stol(aggregate_cpu_[LinuxParser::kIRQ_]) +
+           stol(aggregate_cpu_[LinuxParser::kSoftIRQ_]) +
+           stol(aggregate_cpu_[LinuxParser::kSteal_]);
+  } else {
+    return 0;
+  }
 }
 
 long LinuxParser::Idle_forCalcCpuUtilization() {
   std::vector<std::string> aggregate_cpu_ = LinuxParser::CpuUtilization();
-  return stol(aggregate_cpu_[LinuxParser::kIdle_]) +
-         stol(aggregate_cpu_[LinuxParser::kIOwait_]);
+  if ((aggregate_cpu_[LinuxParser::kIdle_] != "") &&
+      (aggregate_cpu_[LinuxParser::kIOwait_] != "")) {
+    return stol(aggregate_cpu_[LinuxParser::kIdle_]) +
+           stol(aggregate_cpu_[LinuxParser::kIOwait_]);
+  } else {
+    return 0;
+  }
 }
 
 vector<string> LinuxParser::CpuUtilization() {
@@ -349,6 +363,8 @@ long LinuxParser::UpTime(int pid) {
       cnt = cnt + 1;
     }
   }
-  uptimepid = (uptime - stol(value) / Hertz);
+  if (value != "") {
+    uptimepid = (uptime - stol(value) / Hertz);
+  }
   return uptimepid;
 }
